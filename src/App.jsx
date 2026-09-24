@@ -71,23 +71,41 @@ export default function App() {
 
   const handleNavigateToTool = (tool) => {
     setIsDirectoryOpen(false);
-    if (tool.type === 'lab') {
-      setActiveLabTab(tool.labKey);
-      setTimeout(() => {
+
+    // Wait 120ms for modal overlay to clear so scroll calculations are unobstructed
+    setTimeout(() => {
+      // 1. Applied Suite Labs (5 tools)
+      if (tool.actionType === 'applied_lab' || tool.category === 'applied' || tool.labKey) {
+        if (tool.labKey) {
+          setActiveLabTab(tool.labKey);
+        }
         scrollToLabs();
-      }, 50);
-    } else if (tool.type === 'lesson') {
-      setCardTabOverrides(prev => ({ ...prev, [tool.qNum]: 'sandbox' }));
-      setTimeout(() => {
-        scrollToTopic(tool.qNum);
-      }, 50);
-    } else if (tool.id === 'pipeline') {
-      setTimeout(() => {
+      } 
+      // 2. Curriculum Module Sandboxes (15 tools)
+      else if (tool.actionType === 'lesson_sandbox' || tool.category === 'curriculum' || tool.qNum) {
+        const qNum = tool.qNum;
+        if (qNum) {
+          setCardTabOverrides(prev => ({
+            ...prev,
+            [qNum]: { tab: 'interactive', ts: Date.now() }
+          }));
+          scrollToTopic(qNum);
+        }
+      } 
+      // 3. Capstone Synthesis Pipeline
+      else if (tool.actionType === 'pipeline' || tool.id === 'capstone-pipeline') {
         scrollToPipeline();
-      }, 50);
-    } else if (tool.id === 'hero-parser') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+      } 
+      // 4. Hero Live Parser
+      else if (tool.actionType === 'hero' || tool.id === 'hero-parser') {
+        const el = document.getElementById('hero-parser-widget') || document.getElementById('hero-section');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
+    }, 120);
   };
 
   return (
@@ -132,7 +150,7 @@ export default function App() {
           ))}
 
           {/* Applied NLP Laboratory Suite */}
-          <section id="applied-labs" className="pt-8 border-t border-[#e5e2da] dark:border-[#2e3238] space-y-6">
+          <section id="applied-labs" className="scroll-mt-20 pt-8 border-t border-[#e5e2da] dark:border-[#2e3238] space-y-6">
             <div className="text-center space-y-2">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#e5e2da] dark:border-[#2e3238] bg-white dark:bg-[#1c1e21] text-xs font-mono text-[#b85d38] dark:text-[#d97753]">
                 <FlaskConical className="w-3.5 h-3.5" />

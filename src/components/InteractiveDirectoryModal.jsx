@@ -9,6 +9,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "app-semantic",
     category: "applied",
+    type: "lab",
     categoryLabel: "Applied Suite • Tool 1",
     title: "Semantic vs. Keyword Search Arena",
     description: "Side-by-side comparison: lexical keyword matching (BM25) vs. dense cosine embedding retrieval across 6 documents.",
@@ -20,6 +21,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "app-vectors",
     category: "applied",
+    type: "lab",
     categoryLabel: "Applied Suite • Tool 2",
     title: "Word2Vec Vector Arithmetic Playground",
     description: "Mikolov's geometric equation solver: King − Man + Woman = Queen, with SVG parallelogram and cosine nearest neighbors.",
@@ -31,6 +33,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "app-rag",
     category: "applied",
+    type: "lab",
     categoryLabel: "Applied Suite • Tool 3",
     title: "RAG from Scratch Simulator",
     description: "Interactive document chunking, sliding overlap, cosine similarity scoring, and prompt injection vs. hallucination.",
@@ -42,6 +45,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "app-temp",
     category: "applied",
+    type: "lab",
     categoryLabel: "Applied Suite • Tool 4",
     title: "LLM Next-Token & Temperature Simulator",
     description: "Interactive Softmax temperature dial (T: 0.0 to 1.4), Top-P nucleus sampling cutoff, and stochastic word generation.",
@@ -53,6 +57,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "app-cost",
     category: "applied",
+    type: "lab",
     categoryLabel: "Applied Suite • Tool 5",
     title: "Token Economics & Context Calculator",
     description: "Real-time subword token estimator, reading speed, and comparative pricing across Gemini, GPT-4o, and Claude 3.5 Sonnet.",
@@ -66,6 +71,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "hero-parser",
     category: "foundations",
+    type: "hero",
     categoryLabel: "Hero Real-Time Parser",
     title: "Keystroke Reactive Sentence Parser",
     description: "Type any sentence to see real-time token segmentation, stopword filtering, 3D coordinate mapping, and intent classification.",
@@ -77,6 +83,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "capstone-pipeline",
     category: "capstone",
+    type: "pipeline",
     categoryLabel: "Capstone Synthesis",
     title: "5-Stage End-of-Course Pipeline Builder",
     description: "Assemble raw text through cleaning, tokenization, TF-IDF vectorization, and spam classification with live step debugging.",
@@ -90,6 +97,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "sandbox-q1",
     category: "curriculum",
+    type: "lesson",
     categoryLabel: "Part I • Question 1",
     title: "Syntactic Ambiguity Parser",
     description: "Visualize structural parse trees for ambiguous sentences ('I saw the man with the telescope').",
@@ -99,6 +107,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "sandbox-q2",
     category: "curriculum",
+    type: "lesson",
     categoryLabel: "Part I • Question 2",
     title: "Zipf's Law Distribution Curve",
     description: "Power-law distribution simulator proving why 135 words account for half of the English language.",
@@ -108,6 +117,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "sandbox-q3",
     category: "curriculum",
+    type: "lesson",
     categoryLabel: "Part I • Question 3",
     title: "Corpus Length & Profiler Sandbox",
     description: "Document length histograms, 95th-percentile sequence boundaries, and GPU padding trade-offs.",
@@ -117,6 +127,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "sandbox-q4",
     category: "curriculum",
+    type: "lesson",
     categoryLabel: "Part I • Question 4",
     title: "Stopwords Filtration Lab",
     description: "Filter high-frequency glue words, inspect 35% dimensional compression, and check negation risks.",
@@ -126,6 +137,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "sandbox-q5",
     category: "curriculum",
+    type: "lesson",
     categoryLabel: "Part II • Question 5",
     title: "Regex Tokenizer & Contraction Slicer",
     description: "Test whitespace splitting failures on currency, email addresses, hyphens, and punctuation.",
@@ -135,6 +147,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "sandbox-q6",
     category: "curriculum",
+    type: "lesson",
     categoryLabel: "Part II • Question 6",
     title: "Stemming, Lemmatization & BPE",
     description: "Compare Porter stemmer heuristic chopping, WordNet lemmas, and Byte-Pair subwords.",
@@ -144,6 +157,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "sandbox-q7",
     category: "curriculum",
+    type: "lesson",
     categoryLabel: "Part III • Question 7",
     title: "Bag-of-Words & One-Hot Matrix",
     description: "Construct word occurrence vectors and witness the sparsity curse of dimensionality.",
@@ -153,6 +167,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "sandbox-q8",
     category: "curriculum",
+    type: "lesson",
     categoryLabel: "Part III • Question 8",
     title: "TF-IDF Statistical Salience Heatmap",
     description: "Calculate Term Frequency × Inverse Document Frequency across multi-document libraries.",
@@ -162,6 +177,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "sandbox-q9",
     category: "curriculum",
+    type: "lesson",
     categoryLabel: "Part III • Question 9",
     title: "Word2Vec Sliding Context Window",
     description: "Generate target-context word pairs dynamically using Skip-Gram window sweeps.",
@@ -171,6 +187,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "sandbox-q10",
     category: "curriculum",
+    type: "lesson",
     categoryLabel: "Part III • Question 10",
     title: "Cosine Similarity Vector Space",
     description: "Compare angular orientation against Euclidean magnitude in 2D and 3D coordinate spaces.",
@@ -180,6 +197,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "sandbox-q11",
     category: "curriculum",
+    type: "lesson",
     categoryLabel: "Part IV • Question 11",
     title: "Part-of-Speech (POS) Syntax Tagger",
     description: "Tag Penn Treebank grammatical roles (Noun, Verb, Adjective) and resolve homographs.",
@@ -189,6 +207,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "sandbox-q12",
     category: "curriculum",
+    type: "lesson",
     categoryLabel: "Part IV • Question 12",
     title: "Named Entity Recognition (NER) Highlighter",
     description: "Extract Persons, Organizations, Locations, and Dates with color-coded token badges.",
@@ -198,6 +217,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "sandbox-q13",
     category: "curriculum",
+    type: "lesson",
     categoryLabel: "Part IV • Question 13",
     title: "LDA Probabilistic Topic Modeler",
     description: "Unsupervised topic discovery decomposing documents into mixtures of thematic clusters.",
@@ -207,6 +227,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "sandbox-q14",
     category: "curriculum",
+    type: "lesson",
     categoryLabel: "Part IV • Question 14",
     title: "Sentiment & Valence Polarity Gauge",
     description: "Measure emotional valence from -1.0 (Critical) to +1.0 (Positive) with a needle meter.",
@@ -216,6 +237,7 @@ export const ALL_INTERACTIVE_TOOLS = [
   {
     id: "sandbox-q15",
     category: "curriculum",
+    type: "lesson",
     categoryLabel: "Part V • Question 15",
     title: "Transformer Self-Attention Heatmap",
     description: "Calculate mutual token attention weights using Query-Key-Value matrix scaling.",
@@ -338,7 +360,8 @@ export default function InteractiveDirectoryModal({ isOpen, onClose, onNavigateT
             return (
               <div
                 key={tool.id}
-                className="p-4 rounded-xl border border-[#e5e2da] dark:border-[#2e3238] bg-white dark:bg-[#1c1e21] hover:border-[#b85d38]/50 dark:hover:border-[#d97753]/50 transition shadow-[0_1px_3px_rgba(0,0,0,0.02)] flex flex-col justify-between group"
+                onClick={() => handleLaunch(tool)}
+                className="cursor-pointer p-4 rounded-xl border border-[#e5e2da] dark:border-[#2e3238] bg-white dark:bg-[#1c1e21] hover:border-[#b85d38] dark:hover:border-[#d97753] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_4px_16px_rgba(0,0,0,0.3)] transition-all flex flex-col justify-between group"
               >
                 <div className="space-y-1.5">
                   <div className="flex items-center justify-between text-[10px] font-mono text-[#8c887b] dark:text-[#a6a197]">
@@ -366,11 +389,14 @@ export default function InteractiveDirectoryModal({ isOpen, onClose, onNavigateT
                     {tool.actionType === "applied_lab" ? "Lab Tool" : tool.actionType === "lesson_sandbox" ? "Curriculum Sandbox" : "Capstone"}
                   </span>
                   <button
-                    onClick={() => handleLaunch(tool)}
-                    className="px-3 py-1 rounded-md text-xs font-mono font-medium bg-[#f6f4ee] hover:bg-[#2d4a3e] hover:text-white dark:bg-[#24272c] dark:hover:bg-[#4d7a66] text-[#1c1917] dark:text-[#f5f2ea] transition flex items-center gap-1.5"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleLaunch(tool);
+                    }}
+                    className="px-3 py-1.5 rounded-md text-xs font-mono font-medium bg-[#f6f4ee] group-hover:bg-[#2d4a3e] group-hover:text-white dark:bg-[#24272c] dark:group-hover:bg-[#4d7a66] text-[#1c1917] dark:text-[#f5f2ea] transition flex items-center gap-1.5"
                   >
                     <span>Launch Tool</span>
-                    <ArrowRight className="w-3 h-3" />
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                   </button>
                 </div>
               </div>

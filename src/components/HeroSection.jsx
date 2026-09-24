@@ -51,7 +51,7 @@ export default function HeroSection({ personaMode, onStartJourney, onOpenDeck, o
   const isStory = personaMode === 'story';
 
   return (
-    <section className="pt-14 pb-16 px-4 sm:px-6 border-b border-[#e5e2da] dark:border-[#2e3238] bg-[#fbfaf8] dark:bg-[#141618] transition-colors duration-200">
+    <section id="hero-section" className="scroll-mt-20 pt-14 pb-16 px-4 sm:px-6 border-b border-[#e5e2da] dark:border-[#2e3238] bg-[#fbfaf8] dark:bg-[#141618] transition-colors duration-200">
       <div className="max-w-3xl mx-auto text-center space-y-5">
         
         {/* Topic Tag */}
@@ -129,7 +129,7 @@ export default function HeroSection({ personaMode, onStartJourney, onOpenDeck, o
         </div>
 
         {/* Live Interactive Parser Simulator */}
-        <div className="pt-8 max-w-2xl mx-auto text-left">
+        <div id="hero-parser-widget" className="scroll-mt-24 pt-8 max-w-2xl mx-auto text-left">
           <div className="p-5 bg-white dark:bg-[#1c1e21] rounded-2xl border border-[#e5e2da] dark:border-[#2e3238] shadow-[0_4px_20px_rgba(0,0,0,0.03)] space-y-4">
             <div className="flex items-center justify-between text-xs pb-3 border-b border-[#eeebe3] dark:border-[#2b2e34]">
               <span className="font-mono text-[#1c1917] dark:text-[#f5f2ea] flex items-center gap-1.5 font-medium">

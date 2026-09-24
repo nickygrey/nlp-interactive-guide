@@ -49,10 +49,13 @@ export default function TopicCard({
   const [isQuizSubmitted, setIsQuizSubmitted] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
-  // Synchronize with personaMode when changed from header
+  // Synchronize with personaMode when changed from header or forcedTab from directory
   React.useEffect(() => {
     if (forcedTab) {
-      setActiveTab(forcedTab);
+      const tabTarget = typeof forcedTab === 'object' ? forcedTab.tab : forcedTab;
+      if (tabTarget) {
+        setActiveTab(tabTarget);
+      }
     } else if (personaMode === 'story') {
       setActiveTab('story');
     } else {
@@ -85,7 +88,7 @@ export default function TopicCard({
   return (
     <article 
       id={`topic-${topic.qNum}`} 
-      className="p-6 sm:p-9 bg-white dark:bg-[#1c1e21] rounded-2xl border border-[#e5e2da] dark:border-[#2e3238] shadow-[0_2px_12px_rgba(0,0,0,0.02)] space-y-7 transition-colors duration-200"
+      className="scroll-mt-20 p-6 sm:p-9 bg-white dark:bg-[#1c1e21] rounded-2xl border border-[#e5e2da] dark:border-[#2e3238] shadow-[0_2px_12px_rgba(0,0,0,0.02)] space-y-7 transition-colors duration-200"
     >
       
       {/* Question Meta Line */}

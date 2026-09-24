@@ -26,7 +26,7 @@ export default function InteractivePipelineBuilder() {
   const confidence = isSpam ? Math.min(99, 65 + spamMatches.length * 10) : 94;
 
   return (
-    <section id="pipeline-builder" className="p-6 sm:p-9 bg-white dark:bg-[#1c1e21] rounded-2xl border border-[#e5e2da] dark:border-[#2e3238] shadow-[0_2px_12px_rgba(0,0,0,0.02)] space-y-6 transition-colors duration-200">
+    <section id="pipeline-builder" className="scroll-mt-20 p-6 sm:p-9 bg-white dark:bg-[#1c1e21] rounded-2xl border border-[#e5e2da] dark:border-[#2e3238] shadow-[0_2px_12px_rgba(0,0,0,0.02)] space-y-6 transition-colors duration-200">
       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pb-5 border-b border-[#eeebe3] dark:border-[#2b2e34]">
         <div>
           <span className="text-[11px] font-mono uppercase tracking-widest text-[#8c887b] dark:text-[#a6a197] flex items-center gap-1.5 mb-1">
