@@ -7,11 +7,13 @@ import InteractivePipelineBuilder from './components/InteractivePipelineBuilder'
 import PresentationDeckModal from './components/PresentationDeckModal';
 import CertificateModal from './components/CertificateModal';
 import SemanticSearchLab from './components/Labs/SemanticSearchLab';
+import VectorArithmeticLab from './components/Labs/VectorArithmeticLab';
+import RagSimulatorLab from './components/Labs/RagSimulatorLab';
 import TemperatureSimulatorLab from './components/Labs/TemperatureSimulatorLab';
 import TokenCostCalculatorLab from './components/Labs/TokenCostCalculatorLab';
 import Footer from './components/Footer';
 import { CURRICULUM_DATA } from './data/curriculumData';
-import { FlaskConical, Award, Sparkles } from 'lucide-react';
+import { FlaskConical, Award, Sparkles, Compass, Database, Thermometer, Calculator } from 'lucide-react';
 
 export default function App() {
   const [personaMode, setPersonaMode] = useState('story'); // 'story' | 'tech'
@@ -106,41 +108,65 @@ export default function App() {
                 Production Simulators & Tools
               </h2>
               <p className="text-xs sm:text-sm text-[#57534e] dark:text-[#a8a29e] max-w-xl mx-auto leading-relaxed">
-                Step beyond the individual lessons into three interactive engineering sandboxes designed to explore vector retrieval, next-token temperature dynamics, and enterprise token economics.
+                Step beyond the individual lessons into five specialized engineering sandboxes designed to explore vector geometry, dense RAG retrieval, temperature dynamics, and enterprise token economics.
               </p>
 
               {/* Lab Navigation Switcher */}
-              <div className="inline-flex flex-wrap sm:flex-nowrap items-center justify-center bg-[#f0ede6] dark:bg-[#202327] rounded-xl p-1 border border-[#e5e2da] dark:border-[#2e3238] gap-1 mt-4 max-w-full overflow-x-auto">
+              <div className="inline-flex flex-wrap items-center justify-center bg-[#f0ede6] dark:bg-[#202327] rounded-xl p-1 border border-[#e5e2da] dark:border-[#2e3238] gap-1 mt-4 max-w-full overflow-x-auto">
                 <button
                   onClick={() => setActiveLabTab('semantic')}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition flex items-center gap-2 whitespace-nowrap ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition flex items-center gap-1.5 whitespace-nowrap ${
                     activeLabTab === 'semantic'
                       ? 'bg-white dark:bg-[#141618] text-[#1c1917] dark:text-[#f5f2ea] shadow-sm font-semibold'
                       : 'text-[#646059] dark:text-[#a6a197] hover:text-[#1c1917] dark:hover:text-[#f5f2ea]'
                   }`}
                 >
-                  <Sparkles className="w-3.5 h-3.5 text-[#b85d38] dark:text-[#d97753]" />
-                  <span>1. Semantic vs. Keyword</span>
+                  <Sparkles className="w-3 h-3 text-[#b85d38] dark:text-[#d97753]" />
+                  <span>1. Semantic Search</span>
+                </button>
+                <button
+                  onClick={() => setActiveLabTab('vectors')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition flex items-center gap-1.5 whitespace-nowrap ${
+                    activeLabTab === 'vectors'
+                      ? 'bg-white dark:bg-[#141618] text-[#1c1917] dark:text-[#f5f2ea] shadow-sm font-semibold'
+                      : 'text-[#646059] dark:text-[#a6a197] hover:text-[#1c1917] dark:hover:text-[#f5f2ea]'
+                  }`}
+                >
+                  <Compass className="w-3 h-3 text-[#2d4a3e] dark:text-[#76a992]" />
+                  <span>2. Vector Arithmetic</span>
+                </button>
+                <button
+                  onClick={() => setActiveLabTab('rag')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition flex items-center gap-1.5 whitespace-nowrap ${
+                    activeLabTab === 'rag'
+                      ? 'bg-white dark:bg-[#141618] text-[#1c1917] dark:text-[#f5f2ea] shadow-sm font-semibold'
+                      : 'text-[#646059] dark:text-[#a6a197] hover:text-[#1c1917] dark:hover:text-[#f5f2ea]'
+                  }`}
+                >
+                  <Database className="w-3 h-3 text-[#b85d38] dark:text-[#d97753]" />
+                  <span>3. RAG Simulator</span>
                 </button>
                 <button
                   onClick={() => setActiveLabTab('temp')}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition flex items-center gap-2 whitespace-nowrap ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition flex items-center gap-1.5 whitespace-nowrap ${
                     activeLabTab === 'temp'
                       ? 'bg-white dark:bg-[#141618] text-[#1c1917] dark:text-[#f5f2ea] shadow-sm font-semibold'
                       : 'text-[#646059] dark:text-[#a6a197] hover:text-[#1c1917] dark:hover:text-[#f5f2ea]'
                   }`}
                 >
-                  <span>2. Temperature Simulator</span>
+                  <Thermometer className="w-3 h-3 text-[#2d4a3e] dark:text-[#76a992]" />
+                  <span>4. LLM Temperature</span>
                 </button>
                 <button
                   onClick={() => setActiveLabTab('cost')}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition flex items-center gap-2 whitespace-nowrap ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition flex items-center gap-1.5 whitespace-nowrap ${
                     activeLabTab === 'cost'
                       ? 'bg-white dark:bg-[#141618] text-[#1c1917] dark:text-[#f5f2ea] shadow-sm font-semibold'
                       : 'text-[#646059] dark:text-[#a6a197] hover:text-[#1c1917] dark:hover:text-[#f5f2ea]'
                   }`}
                 >
-                  <span>3. Token Cost Calculator</span>
+                  <Calculator className="w-3 h-3 text-[#8c887b]" />
+                  <span>5. Token Economics</span>
                 </button>
               </div>
             </div>
@@ -148,6 +174,8 @@ export default function App() {
             {/* Active Lab Component */}
             <div className="pt-2">
               {activeLabTab === 'semantic' && <SemanticSearchLab />}
+              {activeLabTab === 'vectors' && <VectorArithmeticLab />}
+              {activeLabTab === 'rag' && <RagSimulatorLab />}
               {activeLabTab === 'temp' && <TemperatureSimulatorLab />}
               {activeLabTab === 'cost' && <TokenCostCalculatorLab />}
             </div>

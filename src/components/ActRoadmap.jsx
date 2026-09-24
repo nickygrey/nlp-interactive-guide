@@ -65,7 +65,7 @@ export default function ActRoadmap({ completedQuestions, onSelectAct, onSelectLa
           <button
             onClick={onSelectLab}
             className="px-3 py-1.5 rounded-lg text-left transition hover:bg-[#faece6] dark:hover:bg-[#2a1e1b] group flex flex-col justify-between shrink-0"
-            title="Jump directly to Applied Laboratory Suite (3 Interactive Tools)"
+            title="Jump directly to Applied Laboratory Suite (5 Interactive Tools)"
           >
             <div className="flex items-center justify-between gap-2 w-full font-mono text-[10px] whitespace-nowrap select-none">
               <span className="uppercase tracking-wider text-[#b85d38] dark:text-[#d97753] font-medium">
