@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { ArrowRight, Play, Compass, Activity, Tag, Sparkles } from 'lucide-react';
+import { ArrowRight, Play, Compass, Activity, Tag, Sparkles, Sliders } from 'lucide-react';
 
 const STOPWORDS = new Set(["the", "a", "an", "is", "it", "if", "in", "on", "at", "to", "for", "with", "me", "you", "my", "of", "and", "or", "so", "be", "do"]);
 
-export default function HeroSection({ personaMode, onStartJourney, onOpenDeck }) {
+export default function HeroSection({ personaMode, onStartJourney, onOpenDeck, onOpenDirectory }) {
   const [heroInput, setHeroInput] = useState("How do machines understand the meaning of human language?");
   
   // Real-time live analysis in hero
@@ -118,6 +118,13 @@ export default function HeroSection({ personaMode, onStartJourney, onOpenDeck })
           >
             <Play className="w-3 h-3 text-[#b85d38] dark:text-[#d97753]" />
             <span>Launch Slide Deck</span>
+          </button>
+          <button
+            onClick={onOpenDirectory}
+            className="px-6 py-3 rounded-xl bg-[#faece6] hover:bg-[#f5dbcf] dark:bg-[#341d18] dark:hover:bg-[#45241c] border border-[#b85d38]/40 text-[#b85d38] dark:text-[#e08968] text-xs font-semibold transition flex items-center gap-2"
+          >
+            <Sliders className="w-3.5 h-3.5 text-[#b85d38] dark:text-[#e08968]" />
+            <span>All Interactive Tools (22)</span>
           </button>
         </div>
 

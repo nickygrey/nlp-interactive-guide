@@ -1,5 +1,5 @@
 import React from 'react';
-import { Presentation, Download, Sun, Moon, Award } from 'lucide-react';
+import { Presentation, Download, Sun, Moon, Award, Sliders } from 'lucide-react';
 
 export default function Header({ 
   personaMode, 
@@ -8,6 +8,7 @@ export default function Header({
   totalCount, 
   onOpenDeck, 
   onOpenCert,
+  onOpenDirectory,
   theme, 
   toggleTheme 
 }) {
@@ -79,6 +80,19 @@ export default function Header({
           <Download className="w-3.5 h-3.5 text-[#b85d38] dark:text-[#d97753]" />
           <span className="hidden sm:inline">Slides (.pptx)</span>
         </a>
+
+        {/* Interactive Tools Directory (22) */}
+        <button
+          onClick={onOpenDirectory}
+          className="px-3 py-1.5 rounded-lg border border-[#b85d38]/30 dark:border-[#d97753]/30 bg-[#faece6] dark:bg-[#341d18] hover:bg-[#f5dbcf] dark:hover:bg-[#45241c] text-[#b85d38] dark:text-[#e08968] text-xs font-medium flex items-center gap-1.5 transition shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+          title="Browse all 22 interactive sandboxes and simulators"
+        >
+          <Sliders className="w-3.5 h-3.5 text-[#b85d38] dark:text-[#e08968]" />
+          <span className="hidden sm:inline font-mono">Tools</span>
+          <span className="px-1.5 py-0.2 rounded-full bg-[#b85d38] dark:bg-[#e08968] text-white dark:text-[#1c1e21] text-[10px] font-mono font-bold">
+            22
+          </span>
+        </button>
 
         {/* Slide Deck Modal */}
         <button

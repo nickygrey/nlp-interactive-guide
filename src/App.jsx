@@ -6,6 +6,7 @@ import TopicCard from './components/TopicCard';
 import InteractivePipelineBuilder from './components/InteractivePipelineBuilder';
 import PresentationDeckModal from './components/PresentationDeckModal';
 import CertificateModal from './components/CertificateModal';
+import InteractiveDirectoryModal from './components/InteractiveDirectoryModal';
 import SemanticSearchLab from './components/Labs/SemanticSearchLab';
 import VectorArithmeticLab from './components/Labs/VectorArithmeticLab';
 import RagSimulatorLab from './components/Labs/RagSimulatorLab';
@@ -20,6 +21,8 @@ export default function App() {
   const [completedQuestions, setCompletedQuestions] = useState([1]);
   const [isDeckOpen, setIsDeckOpen] = useState(false);
   const [isCertOpen, setIsCertOpen] = useState(false);
+  const [isDirectoryOpen, setIsDirectoryOpen] = useState(false);
+  const [cardTabOverrides, setCardTabOverrides] = useState({});
   const [activeLabTab, setActiveLabTab] = useState('semantic'); // 'semantic' | 'temp' | 'cost'
   const [theme, setTheme] = useState('light'); // Minimalist Scandinavian default: light warm chalk
 
@@ -59,6 +62,34 @@ export default function App() {
     }
   };
 
+  const scrollToPipeline = () => {
+    const el = document.getElementById('pipeline-builder');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleNavigateToTool = (tool) => {
+    setIsDirectoryOpen(false);
+    if (tool.type === 'lab') {
+      setActiveLabTab(tool.labKey);
+      setTimeout(() => {
+        scrollToLabs();
+      }, 50);
+    } else if (tool.type === 'lesson') {
+      setCardTabOverrides(prev => ({ ...prev, [tool.qNum]: 'sandbox' }));
+      setTimeout(() => {
+        scrollToTopic(tool.qNum);
+      }, 50);
+    } else if (tool.id === 'pipeline') {
+      setTimeout(() => {
+        scrollToPipeline();
+      }, 50);
+    } else if (tool.id === 'hero-parser') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#fbfaf8] text-[#1c1917] dark:bg-[#141618] dark:text-[#f5f2ea] transition-colors duration-200">
       <Header
@@ -68,6 +99,7 @@ export default function App() {
         totalCount={CURRICULUM_DATA.length}
         onOpenDeck={() => setIsDeckOpen(true)}
         onOpenCert={() => setIsCertOpen(true)}
+        onOpenDirectory={() => setIsDirectoryOpen(true)}
         theme={theme}
         toggleTheme={toggleTheme}
       />
@@ -77,6 +109,7 @@ export default function App() {
           personaMode={personaMode}
           onStartJourney={() => scrollToTopic(1)}
           onOpenDeck={() => setIsDeckOpen(true)}
+          onOpenDirectory={() => setIsDirectoryOpen(true)}
         />
 
         <ActRoadmap
@@ -94,6 +127,7 @@ export default function App() {
               personaMode={personaMode}
               isCompleted={completedQuestions.includes(topic.qNum)}
               onMarkComplete={handleMarkComplete}
+              forcedTab={cardTabOverrides[topic.qNum]}
             />
           ))}
 
@@ -223,6 +257,12 @@ export default function App() {
         onClose={() => setIsCertOpen(false)}
         completedCount={completedQuestions.length}
         totalCount={CURRICULUM_DATA.length}
+      />
+
+      <InteractiveDirectoryModal
+        isOpen={isDirectoryOpen}
+        onClose={() => setIsDirectoryOpen(false)}
+        onNavigateToTool={handleNavigateToTool}
       />
     </div>
   );

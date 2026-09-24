@@ -41,7 +41,8 @@ export default function TopicCard({
   topic, 
   personaMode, 
   isCompleted, 
-  onMarkComplete 
+  onMarkComplete,
+  forcedTab
 }) {
   const [activeTab, setActiveTab] = useState(personaMode === 'story' ? 'story' : 'technical');
   const [selectedQuizAnswer, setSelectedQuizAnswer] = useState(null);
@@ -50,12 +51,14 @@ export default function TopicCard({
 
   // Synchronize with personaMode when changed from header
   React.useEffect(() => {
-    if (personaMode === 'story') {
+    if (forcedTab) {
+      setActiveTab(forcedTab);
+    } else if (personaMode === 'story') {
       setActiveTab('story');
     } else {
       setActiveTab('technical');
     }
-  }, [personaMode]);
+  }, [personaMode, forcedTab]);
 
   const handleCopyCode = () => {
     navigator.clipboard.writeText(topic.codeSnippet);
