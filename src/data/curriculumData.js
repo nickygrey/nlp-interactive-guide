@@ -44,15 +44,15 @@ doc = nlp("Language carries meaning that depends entirely on context.")
 for token in doc:
     print(f"{token.text:12} POS: {token.pos_:6} Role: {token.dep_:8} Links to: {token.head.text}")`,
     quiz: {
-      question: "Why can't we just program a computer to understand language using simple 'if-else' rules?",
+      question: "Why do rule-based syntactic grammars (like regular expressions or nested if-else statements) fail when scaling to real-world natural language?",
       options: [
-        "Computers don't have enough memory to store an English dictionary.",
-        "Human language is too ambiguous, full of idioms, and constantly changing with new slang.",
-        "Human speech doesn't have any grammar at all.",
-        "Programming languages can only read numbers, not words."
+        "Context-free grammars cannot be parsed in polynomial time by modern algorithmic engines.",
+        "Human language exhibits pervasive structural ambiguity, polysemy, and pragmatic context shifts that deterministic combinatorial rules cannot resolve.",
+        "Regular expressions are mathematically incapable of matching non-ASCII Unicode characters in modern corpora.",
+        "Deterministic rule engines require continuous GPU matrix recalculations that exhaust hardware cache memory."
       ],
       correctIndex: 1,
-      explanation: "Language is full of double meanings and context shifts. Writing hand-crafted if-else rules for every possible combination is practically impossible."
+      explanation: "Human language is governed by context, non-literal idioms, and structural ambiguities (like prepositional phrase attachment). Hand-crafted deterministic rules suffer from combinatorial explosion and brittleness, whereas statistical and neural models evaluate continuous probabilistic context."
     },
     interactiveType: "ambiguity"
   },
@@ -102,15 +102,15 @@ print("Unique words:", len(counts))
 print("Vocabulary diversity (TTR):", f"{len(counts) / len(tokens):.2f}")
 print("Top 3 most common words:", counts.most_common(3))`,
     quiz: {
-      question: "What does a high Type-Token Ratio (TTR) tell you about a document?",
+      question: "When evaluating vocabulary growth across increasingly large corpora, why does the Type-Token Ratio (TTR = |V| / N) systematically decline rather than remain constant?",
       options: [
-        "The text is repetitive and uses the same words over and over.",
-        "The text uses a rich, varied vocabulary with few repeated words.",
-        "The document has many spelling mistakes.",
-        "The document is written by a machine."
+        "As sample size N expands, closed-class grammatical tokens continue accumulating linearly while the discovery rate of new lexical types asymptotically diminishes according to Heaps' Law.",
+        "Zipf's Law forces high-frequency rank-one terms to be pruned from the active lexicon once token volume exceeds memory capacity.",
+        "The tokenization engine begins discarding low-frequency hapax legomena to protect the document-term matrix from dimensional explosion.",
+        "Type-Token Ratio is mathematically unnormalized, making it strictly dependent on the sentence boundary punctuation threshold."
       ],
-      correctIndex: 1,
-      explanation: "A high TTR means a large percentage of the words in the document are unique, showing rich vocabulary diversity."
+      correctIndex: 0,
+      explanation: "According to Heaps' Law (|V| = k · N^β, with β < 1), vocabulary size grows sublinearly relative to token volume. Common function words repeat indefinitely, causing TTR = |V| / N to naturally decrease in larger corpora."
     },
     interactiveType: "corpus"
   },
@@ -164,15 +164,15 @@ def clean_text(text: str) -> str:
 raw = "<h1>Special Offer!</h1> Visit https://example.com for 50% off! :)"
 print("Cleaned:", clean_text(raw))  # -> "special offer visit for 50 off"`,
     quiz: {
-      question: "When should you KEEP capitalization instead of lowercasing everything?",
+      question: "In which NLP pipeline task is aggressive case-folding (converting all characters to lowercase) most likely to degrade model performance?",
       options: [
-        "When doing Named Entity Recognition, where you need to tell 'Apple' (the company) apart from 'apple' (the fruit).",
-        "When you want to make your code run faster.",
-        "When the text is in Spanish.",
-        "When you have a very small dataset."
+        "In TF-IDF document retrieval, because query term frequencies will fail to match document vocabulary indices.",
+        "In Bag-of-Words text classification, because sparse matrix dimensionality will collapse below the required rank.",
+        "In Named Entity Recognition (NER), because orthographic casing is a vital discriminatory signal distinguishing proper nouns (e.g., 'Apple' vs. 'apple').",
+        "In Latent Dirichlet Allocation (LDA), because symmetric Dirichlet hyperparameters assume strictly capitalized token distributions."
       ],
-      correctIndex: 0,
-      explanation: "Capital letters are a crucial clue for identifying proper nouns like people, companies, and cities."
+      correctIndex: 2,
+      explanation: "Capitalization is one of the strongest orthographic signals for NER models identifying organizations, locations, and personal names. Lowercasing everything destroys this distinction ('Bush' the president vs. 'bush' the plant)."
     },
     interactiveType: "cleaning"
   },
@@ -217,15 +217,15 @@ doc = nlp("Ada Lovelace wrote the first computer algorithm in 1843.")
 for ent in doc.ents:
     print(f"Found: {ent.text:15} Type: {ent.label_}")`,
     quiz: {
-      question: "Why is spaCy preferred over NLTK for high-traffic production websites?",
+      question: "What is the primary architectural reason spaCy achieves substantially higher throughput than NLTK on large document batches?",
       options: [
-        "spaCy skips grammar analysis completely.",
-        "spaCy is written in Cython (C-speed) and processes text in a single memory-optimized pipeline.",
-        "NLTK only supports ancient dead languages.",
-        "spaCy only runs on supercomputers."
+        "spaCy replaces all neural dependency parsing with deterministic dictionary-based lookup heuristics.",
+        "spaCy trains custom subword vocabularies on every incoming batch rather than reusing global static string tables.",
+        "NLTK requires distributed worker clusters and cannot execute on a single local central processing unit.",
+        "spaCy manages data structures in contiguous Cython C-struct memory arrays, whereas NLTK instantiates nested Python lists, tuples, and generator objects."
       ],
-      correctIndex: 1,
-      explanation: "spaCy compiles down to C through Cython, making it significantly faster and more memory-efficient than NLTK for real apps."
+      correctIndex: 3,
+      explanation: "spaCy is implemented in Cython with direct C-level memory structures. Tokens in a Doc are contiguous pointers into a shared global string store (vocab.strings), completely bypassing the memory and garbage-collection overhead of pure Python objects."
     },
     interactiveType: "spacy_nltk"
   },
@@ -274,15 +274,15 @@ ids = tokenizer.encode(phrase)
 print("Subword tokens:", tokens)
 print("Numeric IDs:", ids)`,
     quiz: {
-      question: "How does a subword tokenizer (like BPE) handle a brand-new word it has never seen before?",
+      question: "Why have modern Large Language Models almost universally adopted Byte-Pair Encoding (BPE) or WordPiece over traditional whitespace/regex word tokenizers?",
       options: [
-        "It crashes with an error.",
-        "It deletes the word from the sentence.",
-        "It breaks the unfamiliar word down into smaller syllables or individual letters it already knows.",
-        "It replaces the word with a random synonym."
+        "Subword tokenizers compress word vectors into one-dimensional scalar indices to eliminate embedding layers.",
+        "Subword tokenizers establish a fixed vocabulary boundary while eliminating out-of-vocabulary (OOV) tokens by decomposing unknown words into frequent subword fragments.",
+        "Word-level tokenizers require bidirectional self-attention matrices to compute initial space delimiters.",
+        "Character-level tokenizers produce embeddings that violate Markovian sequence length constraints in attention heads."
       ],
-      correctIndex: 2,
-      explanation: "Because subword tokenizers know all basic letters and syllables, they can gracefully break down any new word into familiar parts."
+      correctIndex: 1,
+      explanation: "Traditional word tokenizers either produce infinite vocabularies or encounter <UNK> (Out-of-Vocabulary) errors on novel words. BPE solves this by maintaining a compact vocabulary (typically 32k–100k tokens) that can decompose any arbitrary new word into known morphological or byte chunks."
     },
     interactiveType: "tokenizer"
   },
@@ -332,15 +332,15 @@ doc = nlp("The wolves are eating better food.")
 for token in doc:
     print(f"{token.text:8} -> Root: {token.lemma_:8} ({token.pos_})")`,
     quiz: {
-      question: "Why does a stemmer fail to connect the word 'better' to its root word 'good'?",
+      question: "Why does an algorithmic stemmer (such as Porter) fail to map the comparative adjective 'better' to its canonical root 'good', whereas a lemmatizer succeeds?",
       options: [
-        "Because 'better' is a stopword.",
-        "Because stemmers only chop off common suffixes like '-ing' and don't know irregular grammar rules.",
-        "Because 'better' can't be turned into numbers.",
-        "Because stemmers only work on nouns."
+        "Stemmers apply heuristic affix-stripping rules without access to a morphological vocabulary or Part-of-Speech context, whereas lemmatizers perform full lexical dictionary analysis.",
+        "Stemmers only evaluate prefixes rather than terminal suffixes, preventing detection of comparative inflections.",
+        "Stemmers require sentence-level dense cosine embeddings to resolve suppletive adjective inflections.",
+        "Lemmatizers compute character n-gram edit distances, while stemmers rely strictly on phonetic Soundex approximations."
       ],
-      correctIndex: 1,
-      explanation: "Stemmers only remove suffixes. Since 'better' is an irregular form rather than an added suffix, only a dictionary-aware lemmatizer can link it to 'good'."
+      correctIndex: 0,
+      explanation: "'Better' -> 'good' is an irregular suppletive form with no shared affixes. Heuristic stemmers only chop common suffixes like '-ing' or '-ed'. Only a lemmatizer with a complete morphological database and POS knowledge can map irregular forms to their true dictionary lemma."
     },
     interactiveType: "morphology"
   },
@@ -391,15 +391,15 @@ print("Vocabulary:", vectorizer.get_feature_names_out())
 print("Vector Shape:", X.shape)
 print("Doc 0 as numbers:", X.toarray()[0])`,
     quiz: {
-      question: "What is the biggest problem with using One-Hot vectors to represent words?",
+      question: "What fundamental mathematical deficiency makes high-dimensional One-Hot Encoding unsuitable for measuring semantic relationships between words?",
       options: [
-        "All word vectors point in the exact same direction.",
-        "Every word vector is completely perpendicular to every other word, so 'cat' and 'kitten' have zero mathematical similarity.",
-        "They can only store numbers between 0 and 10.",
-        "They cannot be saved on modern computers."
+        "One-Hot vectors have non-zero covariance that distorts Euclidean distance calculations.",
+        "One-Hot vectors cannot be transformed into dense matrices because their singular value decomposition is undefined.",
+        "All distinct One-Hot vectors are mutually orthogonal in vector space, yielding a dot product and cosine similarity of zero regardless of semantic similarity.",
+        "The magnitude of a One-Hot vector scales exponentially with the total number of documents in the collection."
       ],
-      correctIndex: 1,
-      explanation: "One-Hot vectors treat every word as completely independent. The mathematical similarity between any two distinct words is always 0.0, hiding all semantic connections."
+      correctIndex: 2,
+      explanation: "In One-Hot encoding, each word is an orthogonal basis vector with a 1 at its index and 0 elsewhere. The dot product u · v between any two different words is always 0, meaning 'physician' and 'doctor' appear as geometrically unrelated as 'doctor' and 'submarine'."
     },
     interactiveType: "vector_matrix"
   },
@@ -451,15 +451,15 @@ matrix = tfidf.fit_transform(docs)
 df = pd.DataFrame(matrix.toarray(), columns=tfidf.get_feature_names_out())
 print(df[["asthma", "the", "electricity"]])`,
     quiz: {
-      question: "If a word appears in every single document in a 10,000-document database, what happens to its IDF score?",
+      question: "In the standard smoothed TF-IDF formulation IDF(t) = ln((N + 1) / (DF(t) + 1)) + 1, what mathematical purpose does the addition of constants serve?",
       options: [
-        "It explodes to infinity.",
-        "It drops down to near zero, so the word doesn't dominate search results.",
-        "It becomes a negative number.",
-        "It doubles in value."
+        "It guarantees that high-frequency terms receive weights greater than document length bounds.",
+        "It prevents division by zero for unseen terms and ensures that words appearing in every document retain a positive baseline weight rather than zeroing out.",
+        "It forces the resulting document vectors to lie strictly on a unit hyper-sphere before cosine projection.",
+        "It converts the term frequency distribution from a power law into a Gaussian normal distribution."
       ],
       correctIndex: 1,
-      explanation: "Because log(10,000 / 10,000) = log(1) = 0, words that appear everywhere receive an IDF score near zero."
+      explanation: "Without smoothing, terms appearing in all N documents yield ln(N/N) = ln(1) = 0, completely discarding the word from the vector. Adding +1 ensures numerical stability (avoiding division by zero) and preserves a non-zero baseline weight."
     },
     interactiveType: "tfidf_matrix"
   },
@@ -512,15 +512,15 @@ v_queen = np.array([0.96, -0.12,  0.91])
 analogy = v_king - v_man + v_woman
 print("Similarity to Queen:", f"{cosine_similarity(analogy, v_queen):.3f}")`,
     quiz: {
-      question: "If two word vectors have a Cosine Similarity score of +1.0, what does that mean geometrically?",
+      question: "In high-dimensional semantic vector spaces, why is Cosine Similarity generally preferred over Euclidean (L2) Distance for comparing document or word embeddings?",
       options: [
-        "They point in the exact same direction in vector space.",
-        "They are completely unrelated and perpendicular.",
-        "They have opposite meanings.",
-        "They have different word lengths."
+        "Euclidean distance requires computing complex matrix inversions that scale cubically with dimensionality.",
+        "Cosine similarity is a non-linear kernel that enables separation of non-convex clusters in Euclidean space.",
+        "Euclidean distance can only be computed between vectors with identical non-zero index coordinates.",
+        "Cosine similarity evaluates purely the directional angle between vectors, normalizing away variations in vector magnitude caused by document length or raw token frequency."
       ],
-      correctIndex: 0,
-      explanation: "A cosine similarity of +1.0 means the angle between the two vectors is 0 degrees—they point in the exact same semantic direction."
+      correctIndex: 3,
+      explanation: "Euclidean distance is heavily sensitive to vector magnitude (length). A long article and a short paragraph discussing the same topic will have very different L2 norms. Cosine similarity normalizes vector lengths, measuring purely the angular alignment of their semantic orientations."
     },
     interactiveType: "vector_universe"
   },
@@ -570,15 +570,15 @@ print("Similarity(coffee, tea):", f"{glove.similarity('coffee', 'tea'):.3f}")
 analogy = glove.most_similar(positive=["france", "tokyo"], negative=["paris"], topn=1)
 print("Analogy result:", analogy[0])  # -> ('japan', 0.812)`,
     quiz: {
-      question: "Why was 'Negative Sampling' such an important trick for training Word2Vec?",
+      question: "In the Word2Vec Skip-Gram architecture, what computational bottleneck motivated the introduction of Negative Sampling (SGNS)?",
       options: [
-        "It removes negative sentiment words from the training text.",
-        "It replaces a slow calculation across 100,000 words with a fast check against a handful of random noise words.",
-        "It fixes spelling mistakes automatically.",
-        "It allows the model to run without a GPU."
+        "Computing the full Softmax denominator required summing exponential dot products across the entire vocabulary |V| at every single training step.",
+        "The input context window suffered from vanishing gradient decay across sentences exceeding five tokens.",
+        "Dot products in continuous latent spaces produced negative eigenvalues during backpropagation.",
+        "The hierarchical clustering algorithm could not allocate dynamic weights across multi-threaded CPU workers."
       ],
-      correctIndex: 1,
-      explanation: "Calculating probabilities over a 100,000-word vocabulary at every step is too slow. Negative sampling turns it into a fast binary classification against a few random words."
+      correctIndex: 0,
+      explanation: "The full Softmax normalization term requires summing exp(v' · v) across the entire vocabulary (|V| > 100,000) for every single context word update, which is O(|V|). Negative Sampling reduces this to O(k) binary logistic classifications against k random noise tokens."
     },
     interactiveType: "word2vec_window"
   },
@@ -630,15 +630,15 @@ doc = nlp("Satya Nadella announced Microsoft acquired Nuance in Seattle for $19 
 for ent in doc.ents:
     print(f"{ent.text:20} -> {ent.label_:8} ({spacy.explain(ent.label_)})")`,
     quiz: {
-      question: "In the IOB tagging system, why do we need both 'B-' (Beginning) and 'I-' (Inside) tags?",
+      question: "Why is the standard BIO (Beginning, Inside, Outside) sequence tagging scheme preferred over a simpler binary entity classification scheme?",
       options: [
-        "To tell British English from American English.",
-        "To tell where one entity ends and another entity of the same type immediately begins (like 'John Paul').",
-        "To indicate whether words are uppercase or lowercase.",
-        "It is only used for backward compatibility."
+        "Binary classification cannot be processed by conditional random field (CRF) or Viterbi decoding layers.",
+        "Binary tagging causes token vectors to lose positional encoding order in Transformer encoders.",
+        "The 'B-' prefix explicitly marks the boundary between adjacent distinct entities of the identical entity type (such as two consecutive names).",
+        "The 'I-' tag is mathematically required to normalize softmax logits across uneven token spans."
       ],
-      correctIndex: 1,
-      explanation: "If two people are mentioned side by side (e.g., 'John Paul'), IOB tags clarify whether it's one person (B-PER, I-PER) or two separate people (B-PER, B-PER)."
+      correctIndex: 2,
+      explanation: "If two distinct entities of the same type appear back-to-back (e.g. 'President Lincoln Grant visited...'), binary tagging cannot distinguish whether it is one person or two. The 'B-' prefix marks the inception of a new entity: B-PER, B-PER."
     },
     interactiveType: "ner_highlighter"
   },
@@ -690,15 +690,15 @@ reviews = [
 for res, text in zip(classifier(reviews), reviews):
     print(f"[{res['label']:8}] ({res['score']:.1%}): {text}")`,
     quiz: {
-      question: "Why does simple keyword counting fail on the sentence: 'The food was not at all bad'?",
+      question: "Why do unigram Bag-of-Words classifiers frequently misclassify sentences containing valence shifters, such as 'The food was not at all bad'?",
       options: [
-        "Because 'food' is a noun.",
-        "Because it sees the word 'bad' and marks it negative, missing the fact that 'not at all' turns it into a positive comment.",
-        "Because sentiment analysis only works on tweets.",
-        "Because the sentence is too short."
+        "Adverbs like 'terribly' or 'at all' are automatically stripped as stopwords during dictionary tokenization.",
+        "Bag-of-Words representations discard word order and syntactic dependency scope, isolating negative lexical items ('bad') from their modifying negation operators ('not at all').",
+        "Unigram frequency counts scale inversely with sentence length in Naive Bayes likelihood estimation.",
+        "Sentiment lexicons only support binary polarity labels and cannot calculate continuous floating-point scores."
       ],
       correctIndex: 1,
-      explanation: "Without looking at context, keyword counters evaluate words in isolation and misinterpret negated negatives as negative reviews."
+      explanation: "In a unigram bag-of-words, the sentence is broken into isolated tokens: {'food', 'not', 'at', 'all', 'bad'}. The negative polarity of 'bad' is evaluated independently without the syntactic binding of the negator, misclassifying the positive endorsement as a negative review."
     },
     interactiveType: "sentiment_gauge"
   },
@@ -758,15 +758,15 @@ for i, topic in enumerate(lda.components_):
     top_words = [words[idx] for idx in topic.argsort()[:-4:-1]]
     print(f"Topic {i+1}:", ", ".join(top_words))`,
     quiz: {
-      question: "In Latent Dirichlet Allocation (LDA), can a single document discuss multiple topics?",
+      question: "What is the key generative assumption that distinguishes Latent Dirichlet Allocation (LDA) from hard document clustering algorithms like K-Means?",
       options: [
-        "No, LDA strictly forces every document into exactly one topic.",
-        "Yes, every document is modeled as a mixture of multiple topics (e.g. 70% Space, 30% Finance).",
-        "Only if the document has fewer than 100 words.",
-        "No, topics are mutually exclusive."
+        "LDA assumes words are generated from a fixed orthogonal distance matrix without probabilistic priors.",
+        "K-Means models document topics as continuous probability distributions over latent dimensions.",
+        "LDA requires supervised topic labels for document clusters before computing variational inference.",
+        "LDA models each document as a continuous probabilistic mixture over multiple topics, and each topic as a Dirichlet distribution over the vocabulary."
       ],
-      correctIndex: 1,
-      explanation: "Yes! A core assumption of LDA is that documents are blends of several topics in different proportions."
+      correctIndex: 3,
+      explanation: "In K-Means, every document is forced into exactly one cluster (hard assignment). In contrast, LDA assumes mixed membership: a document can be 60% Biology, 30% Chemistry, and 10% Computing, with Dirichlet distributions governing topic and word proportions."
     },
     interactiveType: "lda_topic"
   },
@@ -829,15 +829,15 @@ model.fit(messages, labels)
 new_msg = ["Urgent: Claim your free gift now!"]
 print("Prediction:", model.predict(new_msg)[0])`,
     quiz: {
-      question: "When building an AI to detect a rare disease (occurring in 1 out of 1,000 patients), which metric is most important to make sure sick people are not missed?",
+      question: "When evaluating a text classifier on an extreme class imbalance dataset (e.g. 0.1% phishing emails vs. 99.9% legitimate emails), why is Accuracy a dangerously misleading metric?",
       options: [
-        "Raw Accuracy",
-        "Recall (Sensitivity)",
-        "Document Length",
-        "Vocabulary Size"
+        "A trivial dummy model that predicts 'legitimate' for 100% of incoming emails achieves 99.9% accuracy while failing to detect a single phishing attack.",
+        "Accuracy can only be computed when the classification decision threshold is configured to exactly 0.0.",
+        "Accuracy mathematically penalizes false positive errors twice as heavily as false negative omissions.",
+        "Scikit-learn classification reporting modules require strictly balanced binary integers in input labels."
       ],
-      correctIndex: 1,
-      explanation: "High Recall ensures that real positive cases (sick patients) are caught by the model rather than being mistakenly told they are healthy."
+      correctIndex: 0,
+      explanation: "On a 99.9% / 0.1% imbalanced dataset, a model that blindly predicts the majority class achieves 99.9% accuracy, yet is 100% useless in production. Practitioners must evaluate Precision, Recall, and the Precision-Recall Area Under Curve (PR-AUC)."
     },
     interactiveType: "classifier"
   },
@@ -887,15 +887,15 @@ prompt = """Explain why the word 'it' refers to 'animal' in:
 output = generator(prompt, max_new_tokens=100)
 print(output[0]['generated_text'])`,
     quiz: {
-      question: "What major advantage did the Transformer architecture have over older Recurrent Neural Networks (RNNs)?",
+      question: "What fundamental computational limitation of Recurrent Neural Networks (LSTMs / GRUs) did the Transformer's Multi-Head Self-Attention architecture overcome?",
       options: [
-        "Transformers process words one-by-one in strict chronological order.",
-        "Self-Attention processes all words in a sentence simultaneously in parallel, speeding up training on massive GPU clusters.",
-        "Transformers do not use any numbers or vectors.",
-        "Transformers don't need any training data."
+        "LSTMs required continuous pre-training on character-level n-gram matrices before task fine-tuning.",
+        "LSTMs could only accept static one-hot input arrays rather than continuous floating-point vectors.",
+        "RNNs enforced sequential O(n) step-by-step token recurrence that prohibited parallel training across hardware and suffered from long-range gradient decay.",
+        "RNN hidden states could only store grammar rules rather than semantic contextual word representations."
       ],
-      correctIndex: 1,
-      explanation: "By eliminating sequential step-by-step reading, Transformers enabled massive parallel training across thousands of GPUs on trillions of words."
+      correctIndex: 2,
+      explanation: "In RNNs, token t cannot be computed until token t-1 finishes, creating an unparallelizable sequential bottleneck. Transformers process all tokens simultaneously using matrix multiplications (Q, K, V), fully utilizing modern GPU parallelism and computing direct connections between distant tokens in constant O(1) operations."
     },
     interactiveType: "transformer_attention"
   }
