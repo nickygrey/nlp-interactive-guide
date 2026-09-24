@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-color: #fbfaf8;
+  --card-color: #ffffff;
+  --card-muted: #f5f3ec;
+  --border-color: #e5e2da;
+  --border-subtle: #eeebe3;
+  --text-main: #1c1917;
+  --text-muted: #646059;
+  --text-subtle: #8c887b;
+  --accent-clay: #b85d38;
+  --accent-pine: #2d4a3e;
+  --accent-fjord: #1f2d3d;
+  --accent-wheat: #c29342;
+}
+
+.dark {
+  --bg-color: #141618;
+  --card-color: #1c1e21;
+  --card-muted: #24272c;
+  --border-color: #2e3238;
+  --border-subtle: #25282d;
+  --text-main: #f5f2ea;
+  --text-muted: #a6a197;
+  --text-subtle: #736f66;
+  --accent-clay: #d97753;
+  --accent-pine: #4d7a66;
+  --accent-fjord: #4b6a8a;
+  --accent-wheat: #d4a759;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  overflow-x: hidden;
+  letter-spacing: -0.01em;
+}
+
+.font-serif {
+  font-family: 'Newsreader', Georgia, Cambria, serif;
+}
+
+.font-sans {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Subtle, tactile paper card */
+.paper-card {
+  background-color: var(--card-color);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.dark .paper-card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Minimal hairline divider */
+.hairline {
+  border-color: var(--border-color);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d6d2c4;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #3b3f46;
+}
