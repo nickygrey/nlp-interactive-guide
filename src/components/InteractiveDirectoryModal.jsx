@@ -4,7 +4,7 @@ import {
   Layers, Play, Filter, ArrowRight, CheckCircle2, Sliders, Cpu, Activity
 } from 'lucide-react';
 
-export const ALL_INTERACTIVE_TOOLS = [
+const ALL_INTERACTIVE_TOOLS = [
   // APPLIED SUITE (5)
   {
     id: "app-semantic",
