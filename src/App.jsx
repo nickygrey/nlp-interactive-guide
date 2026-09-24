@@ -199,24 +199,13 @@ export default function App() {
                   Generate your personalized Scandinavian Diploma certifying your verified competency across all 15 curriculum modules, or print the 1-Page Field Cheat Sheet for quick reference.
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row items-center gap-3">
-                <a
-                  href="/NLP_Complete_Presentation_Guide.pdf"
-                  download
-                  className="px-4 py-3 rounded-xl border border-[#e5e2da] dark:border-[#2e3238] bg-[#fbfaf8] hover:bg-[#f2efe9] dark:bg-[#181a1d] dark:hover:bg-[#25282d] text-[#1c1917] dark:text-[#f5f2ea] font-mono text-xs font-semibold flex items-center gap-2 transition shadow-sm whitespace-nowrap"
-                  title="Download the complete 9-page Presentation & Field Guide (.pdf)"
-                >
-                  <FileText className="w-4 h-4 text-[#2d4a3e] dark:text-[#76a992]" />
-                  <span>Download Guide (.pdf)</span>
-                </a>
-                <button
-                  onClick={() => setIsCertOpen(true)}
-                  className="px-5 py-3 rounded-xl bg-[#2d4a3e] hover:bg-[#233b31] dark:bg-[#4d7a66] dark:hover:bg-[#3d6353] text-white font-mono text-xs font-semibold flex items-center gap-2 transition shadow-sm whitespace-nowrap"
-                >
-                  <Award className="w-4 h-4 text-[#e5b382]" />
-                  <span>Open Certificate & Cheat Sheet</span>
-                </button>
-              </div>
+              <button
+                onClick={() => setIsCertOpen(true)}
+                className="px-5 py-3 rounded-xl bg-[#2d4a3e] hover:bg-[#233b31] dark:bg-[#4d7a66] dark:hover:bg-[#3d6353] text-white font-mono text-xs font-semibold flex items-center gap-2 transition shadow-sm whitespace-nowrap"
+              >
+                <Award className="w-4 h-4 text-[#e5b382]" />
+                <span>Open Certificate & Cheat Sheet</span>
+              </button>
             </div>
           </section>
         </div>

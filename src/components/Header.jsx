@@ -1,5 +1,5 @@
 import React from 'react';
-import { Presentation, Download, Sun, Moon, Award, FileText } from 'lucide-react';
+import { Presentation, Download, Sun, Moon, Award } from 'lucide-react';
 
 export default function Header({ 
   personaMode, 
@@ -68,17 +68,6 @@ export default function Header({
             ></div>
           </div>
         </div>
-
-        {/* PDF Presentation Guide Download */}
-        <a
-          href="/NLP_Complete_Presentation_Guide.pdf"
-          download
-          className="px-3 py-1.5 rounded-lg border border-[#e5e2da] dark:border-[#2e3238] bg-white dark:bg-[#1c1e21] hover:bg-[#f6f4ee] dark:hover:bg-[#24272c] text-[#1c1917] dark:text-[#f5f2ea] text-xs font-medium flex items-center gap-1.5 transition shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
-          title="Download the full 9-page Presentation & Field Guide (.pdf)"
-        >
-          <FileText className="w-3.5 h-3.5 text-[#2d4a3e] dark:text-[#76a992]" />
-          <span className="hidden sm:inline">Guide (.pdf)</span>
-        </a>
 
         {/* PowerPoint Keynote Download */}
         <a

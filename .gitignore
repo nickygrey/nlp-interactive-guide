@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Private Presentation Guide
+NLP_Complete_Presentation_Guide.pdf
+chrome-temp/
