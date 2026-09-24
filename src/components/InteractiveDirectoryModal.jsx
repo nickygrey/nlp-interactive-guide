@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { 
   X, Search, Sparkles, Compass, Database, Thermometer, Calculator, 
-  Layers, Play, Filter, ArrowRight, CheckCircle2, Sliders, Cpu, Activity
+  Layers, Play, Filter, ArrowRight, CheckCircle2, Sliders, Cpu, Activity,
+  Split, BarChart2, Scissors, Binary, BookOpen, Hash, MapPin, Smile,
+  PieChart, ShieldAlert, Zap
 } from 'lucide-react';
 
 const ALL_INTERACTIVE_TOOLS = [
@@ -99,150 +101,165 @@ const ALL_INTERACTIVE_TOOLS = [
     category: "curriculum",
     type: "lesson",
     categoryLabel: "Part I • Question 1",
-    title: "Syntactic Ambiguity Parser",
-    description: "Visualize structural parse trees for ambiguous sentences ('I saw the man with the telescope').",
+    title: "Syntactic & Lexical Ambiguity Parser",
+    description: "Explore double meanings, structural parse trees, and prepositional attachment ('We saw her duck', 'Time flies...').",
     qNum: 1,
-    actionType: "lesson_sandbox"
+    actionType: "lesson_sandbox",
+    icon: Split
   },
   {
     id: "sandbox-q2",
     category: "curriculum",
     type: "lesson",
     categoryLabel: "Part I • Question 2",
-    title: "Zipf's Law Distribution Curve",
-    description: "Power-law distribution simulator proving why 135 words account for half of the English language.",
+    title: "Corpus Profiler & Zipf's Law Explorer",
+    description: "Analyze vocabulary richness, Type-Token Ratio (TTR), and observe Zipf's power-law frequency distributions in real time.",
     qNum: 2,
-    actionType: "lesson_sandbox"
+    actionType: "lesson_sandbox",
+    icon: BarChart2
   },
   {
     id: "sandbox-q3",
     category: "curriculum",
     type: "lesson",
     categoryLabel: "Part I • Question 3",
-    title: "Corpus Length & Profiler Sandbox",
-    description: "Document length histograms, 95th-percentile sequence boundaries, and GPU padding trade-offs.",
+    title: "Regex Cleaning & Noise Reduction Lab",
+    description: "Toggle live HTML stripping, regex normalization, punctuation removal, and stopword filtering with reduction stats.",
     qNum: 3,
-    actionType: "lesson_sandbox"
+    actionType: "lesson_sandbox",
+    icon: Scissors
   },
   {
     id: "sandbox-q4",
     category: "curriculum",
     type: "lesson",
     categoryLabel: "Part I • Question 4",
-    title: "Stopwords Filtration Lab",
-    description: "Filter high-frequency glue words, inspect 35% dimensional compression, and check negation risks.",
+    title: "spaCy vs. NLTK Architectural Comparison",
+    description: "Compare spaCy's unified C-level Doc memory pipeline with NLTK's decoupled functional Python toolchain.",
     qNum: 4,
-    actionType: "lesson_sandbox"
+    actionType: "lesson_sandbox",
+    icon: Cpu
   },
   {
     id: "sandbox-q5",
     category: "curriculum",
     type: "lesson",
     categoryLabel: "Part II • Question 5",
-    title: "Regex Tokenizer & Contraction Slicer",
-    description: "Test whitespace splitting failures on currency, email addresses, hyphens, and punctuation.",
+    title: "BPE Subword & Tokenizer Laboratory",
+    description: "Test whitespace splitting vs character streams vs Byte-Pair Encoding (BPE) subword tiles with hash token IDs.",
     qNum: 5,
-    actionType: "lesson_sandbox"
+    actionType: "lesson_sandbox",
+    icon: Hash
   },
   {
     id: "sandbox-q6",
     category: "curriculum",
     type: "lesson",
     categoryLabel: "Part II • Question 6",
-    title: "Stemming, Lemmatization & BPE",
-    description: "Compare Porter stemmer heuristic chopping, WordNet lemmas, and Byte-Pair subwords.",
+    title: "Porter Stemmer vs. WordNet Lemmatizer",
+    description: "Side-by-side linguistic comparison showing when heuristic suffix chopping fails versus vocabulary-aware dictionary lemmas.",
     qNum: 6,
-    actionType: "lesson_sandbox"
+    actionType: "lesson_sandbox",
+    icon: BookOpen
   },
   {
     id: "sandbox-q7",
     category: "curriculum",
     type: "lesson",
     categoryLabel: "Part III • Question 7",
-    title: "Bag-of-Words & One-Hot Matrix",
-    description: "Construct word occurrence vectors and witness the sparsity curse of dimensionality.",
+    title: "Vectorization & Memory Tradeoffs Matrix",
+    description: "Interactive RAM and sparsity simulator comparing One-Hot arrays, Compressed Sparse Row (CSR) BoW, and dense embeddings.",
     qNum: 7,
-    actionType: "lesson_sandbox"
+    actionType: "lesson_sandbox",
+    icon: Binary
   },
   {
     id: "sandbox-q8",
     category: "curriculum",
     type: "lesson",
     categoryLabel: "Part III • Question 8",
-    title: "TF-IDF Statistical Salience Heatmap",
-    description: "Calculate Term Frequency × Inverse Document Frequency across multi-document libraries.",
+    title: "TF-IDF Statistical Weighting Matrix",
+    description: "Calculate dynamic Term Frequency (TF) × Inverse Document Frequency (IDF) salience scores across editable documents.",
     qNum: 8,
-    actionType: "lesson_sandbox"
+    actionType: "lesson_sandbox",
+    icon: Database
   },
   {
     id: "sandbox-q9",
     category: "curriculum",
     type: "lesson",
     categoryLabel: "Part III • Question 9",
-    title: "Word2Vec Sliding Context Window",
-    description: "Generate target-context word pairs dynamically using Skip-Gram window sweeps.",
+    title: "2D Semantic Embedding Space & Analogies",
+    description: "Interactive coordinate canvas measuring cosine proximity and directional semantic vectors (King - Man + Woman = Queen).",
     qNum: 9,
-    actionType: "lesson_sandbox"
+    actionType: "lesson_sandbox",
+    icon: Compass
   },
   {
     id: "sandbox-q10",
     category: "curriculum",
     type: "lesson",
     categoryLabel: "Part III • Question 10",
-    title: "Cosine Similarity Vector Space",
-    description: "Compare angular orientation against Euclidean magnitude in 2D and 3D coordinate spaces.",
+    title: "Word2Vec Sliding Window (CBOW & Skip-Gram)",
+    description: "Sweep a context horizon across tokens to inspect training pairs for Continuous Bag-of-Words and Skip-Gram.",
     qNum: 10,
-    actionType: "lesson_sandbox"
+    actionType: "lesson_sandbox",
+    icon: Sliders
   },
   {
     id: "sandbox-q11",
     category: "curriculum",
     type: "lesson",
     categoryLabel: "Part IV • Question 11",
-    title: "Part-of-Speech (POS) Syntax Tagger",
-    description: "Tag Penn Treebank grammatical roles (Noun, Verb, Adjective) and resolve homographs.",
+    title: "Named Entity Recognition (NER) & BIO Tagger",
+    description: "Extract real-world entities (Persons, Organizations, Locations) and inspect token-level BIO sequence tags.",
     qNum: 11,
-    actionType: "lesson_sandbox"
+    actionType: "lesson_sandbox",
+    icon: MapPin
   },
   {
     id: "sandbox-q12",
     category: "curriculum",
     type: "lesson",
     categoryLabel: "Part IV • Question 12",
-    title: "Named Entity Recognition (NER) Highlighter",
-    description: "Extract Persons, Organizations, Locations, and Dates with color-coded token badges.",
+    title: "Sentiment Valence & Negation Analyzer",
+    description: "Gauge emotional polarity from -1.0 to +1.0 and observe how negation modifiers dynamically invert sentiment.",
     qNum: 12,
-    actionType: "lesson_sandbox"
+    actionType: "lesson_sandbox",
+    icon: Smile
   },
   {
     id: "sandbox-q13",
     category: "curriculum",
     type: "lesson",
     categoryLabel: "Part IV • Question 13",
-    title: "LDA Probabilistic Topic Modeler",
-    description: "Unsupervised topic discovery decomposing documents into mixtures of thematic clusters.",
+    title: "LDA Probabilistic Topic Mixture Modeler",
+    description: "Adjust topic proportion weights to generate probabilistic document word distributions across thematic clusters.",
     qNum: 13,
-    actionType: "lesson_sandbox"
+    actionType: "lesson_sandbox",
+    icon: PieChart
   },
   {
     id: "sandbox-q14",
     category: "curriculum",
     type: "lesson",
     categoryLabel: "Part IV • Question 14",
-    title: "Sentiment & Valence Polarity Gauge",
-    description: "Measure emotional valence from -1.0 (Critical) to +1.0 (Positive) with a needle meter.",
+    title: "Naive Bayes Text & Spam Classifier",
+    description: "Test incoming messages against weighted trigger features with real-time log-odds inference and confidence gauges.",
     qNum: 14,
-    actionType: "lesson_sandbox"
+    actionType: "lesson_sandbox",
+    icon: ShieldAlert
   },
   {
     id: "sandbox-q15",
     category: "curriculum",
     type: "lesson",
     categoryLabel: "Part V • Question 15",
-    title: "Transformer Self-Attention Heatmap",
-    description: "Calculate mutual token attention weights using Query-Key-Value matrix scaling.",
+    title: "Transformer Self-Attention Disambiguator",
+    description: "Explore how self-attention heads resolve ambiguous pronouns ('it' -> animal vs street) using weighted token connections.",
     qNum: 15,
-    actionType: "lesson_sandbox"
+    actionType: "lesson_sandbox",
+    icon: Zap
   }
 ];
 

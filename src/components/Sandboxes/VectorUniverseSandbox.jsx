@@ -22,8 +22,10 @@ export default function VectorUniverseSandbox() {
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    const isDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
+
     // Draw subtle grid
-    ctx.strokeStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.strokeStyle = isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.05)";
     ctx.lineWidth = 1;
     for (let x = 0; x < canvas.width; x += 40) {
       ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
@@ -41,22 +43,22 @@ export default function VectorUniverseSandbox() {
       ctx.fill();
 
       if (isSel) {
-        ctx.strokeStyle = "#1c1917";
+        ctx.strokeStyle = isDark ? "#f5f2ea" : "#1c1917";
         ctx.lineWidth = 2;
         ctx.stroke();
       }
 
       ctx.font = "500 12px 'JetBrains Mono', monospace";
-      ctx.fillStyle = isSel ? "#1c1917" : p.color;
+      ctx.fillStyle = isSel ? (isDark ? "#f5f2ea" : "#1c1917") : (isDark ? "#d6d3d1" : p.color);
       ctx.fillText(p.name, p.x + 9, p.y + 4);
     });
 
     // Draw connecting line if 2 selected
     if (selected.length === 2) {
       const [p1, p2] = selected;
-      ctx.strokeStyle = "#1c1917";
+      ctx.strokeStyle = isDark ? "#d97753" : "#1c1917";
       ctx.setLineDash([4, 4]);
-      ctx.lineWidth = 1.2;
+      ctx.lineWidth = 1.4;
       ctx.beginPath();
       ctx.moveTo(p1.x, p1.y);
       ctx.lineTo(p2.x, p2.y);
