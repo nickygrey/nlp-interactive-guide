@@ -2,6 +2,8 @@
 
 An interactive educational web portal designed in a **Minimalist Scandinavian Editorial** aesthetic, exploring the 15 fundamental questions of Natural Language Processing (NLP)—from basic tokenization and Zipf's law to Word2Vec, TF-IDF, and modern Transformer self-attention.
 
+> **Live Interactive Portal**: [https://nickygrey.github.io/nlp-interactive-guide/](https://nickygrey.github.io/nlp-interactive-guide/)
+
 ---
 
 ## Highlights
@@ -21,8 +23,8 @@ An interactive educational web portal designed in a **Minimalist Scandinavian Ed
 
 ```bash
 # Clone the repository
-git clone https://github.com/<your-username>/<repo-name>.git
-cd <repo-name>
+git clone https://github.com/nickygrey/nlp-interactive-guide.git
+cd nlp-interactive-guide
 
 # Install dependencies
 npm install
