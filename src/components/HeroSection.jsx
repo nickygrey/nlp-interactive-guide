@@ -4,7 +4,7 @@ import { ArrowRight, Play, Compass, Activity, Tag, Sparkles } from 'lucide-react
 const STOPWORDS = new Set(["the", "a", "an", "is", "it", "if", "in", "on", "at", "to", "for", "with", "me", "you", "my", "of", "and", "or", "so", "be", "do"]);
 
 export default function HeroSection({ personaMode, onStartJourney, onOpenDeck }) {
-  const [heroInput, setHeroInput] = useState("Please tell me if it works");
+  const [heroInput, setHeroInput] = useState("How do machines understand the meaning of human language?");
   
   // Real-time live analysis in hero
   const rawWords = heroInput.trim().length > 0 ? heroInput.match(/\S+/g) || [] : [];
@@ -135,10 +135,35 @@ export default function HeroSection({ personaMode, onStartJourney, onOpenDeck })
               </span>
             </div>
 
-            <div>
-              <label className="block text-[11px] font-mono uppercase tracking-wider text-[#8c887b] dark:text-[#78716c] mb-1.5">
-                Type any sentence below to test:
-              </label>
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <label className="block text-[11px] font-mono uppercase tracking-wider text-[#8c887b] dark:text-[#78716c]">
+                  Type any sentence below to test:
+                </label>
+                <div className="hidden sm:flex items-center gap-1.5 text-[10px] font-mono text-[#8c887b] dark:text-[#a6a197]">
+                  <span>Try:</span>
+                  <button
+                    onClick={() => setHeroInput("How do machines understand the meaning of human language?")}
+                    className="hover:text-[#b85d38] dark:hover:text-[#d97753] underline decoration-dotted transition"
+                  >
+                    Question
+                  </button>
+                  <span>•</span>
+                  <button
+                    onClick={() => setHeroInput("Neural networks convert raw words into high-dimensional geometric vectors.")}
+                    className="hover:text-[#b85d38] dark:hover:text-[#d97753] underline decoration-dotted transition"
+                  >
+                    Vectors
+                  </button>
+                  <span>•</span>
+                  <button
+                    onClick={() => setHeroInput("The quick brown fox jumps over the lazy dog.")}
+                    className="hover:text-[#b85d38] dark:hover:text-[#d97753] underline decoration-dotted transition"
+                  >
+                    Classic
+                  </button>
+                </div>
+              </div>
               <input
                 type="text"
                 value={heroInput}
